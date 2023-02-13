@@ -16,7 +16,7 @@
         </div>
       </router-link>
 
-      <router-link to="/">
+      <router-link to="/guide">
         <div class="navbar-btn">
           <div class="navbar-btn-text">
             Guide
@@ -25,7 +25,7 @@
         </div>
       </router-link>
 
-      <router-link to="/">
+      <router-link to="/about">
         <div class="navbar-btn">
           <div class="navbar-btn-text">
             About me
@@ -55,7 +55,7 @@
       </router-link>
 
       <div class="navbar-inf">
-        © 2022 Jake. All rights reserved.
+        © 2023 Jake. All rights reserved.
       </div>
     </div>
   </div>
@@ -74,9 +74,7 @@ export default {
     font-weight: 700;
     transition: var(--transition);
   }
-  a:hover{
-    /* color: green; */
-  }
+
   .navbar{
     width: 300px;
     height: 100%;

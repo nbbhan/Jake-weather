@@ -50,7 +50,7 @@
     display: flex;
   }
 
-  #en, #jp{
+  #en, #jp, #guide, #about{
     flex: 1;
     height: 100%;
     padding: 15px 15px 15px 0;
