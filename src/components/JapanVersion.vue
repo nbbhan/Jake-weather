@@ -5,6 +5,8 @@
         <div class="search-welcome">地名・施設名・郵便番号を入力してください</div>
 
         <div class="search-box">
+          <div class="search-error">{{ err }}</div>
+
           <input 
             type="text" 
             class="search-bar" 
@@ -43,18 +45,27 @@
         api_key: 'fc094fcde258dbe1ecb05d23f7517596',
         url_base: 'https://api.openweathermap.org/data/2.5/weather?',
         query: '',
-        weather: {}
+        weather: {},
+        err: ''
       }
     },
     methods: {
       fetchWeather (e) {
         if (e.key == "Enter") {
-          fetch(`${this.url_base}q=${this.query}&appid=${this.api_key}`)
+
+          // Using regex for validation
+          if (/[一-龠]+|[ぁ-ゔ]+|[ァ-ヴー]+|[ａ-ｚＡ-Ｚ０-９]+|[々〆〤ヶ]+/u.test(this.query)){
+            fetch(`${this.url_base}q=${this.query}&appid=${this.api_key}`)
             .then(res => {
               return res.json();
             }).then(this.setResults);
 
-          document.querySelector('.weather-container').style.display = 'flex'
+            if(this.err != '') this.err = ''
+
+            if(document.querySelector('.weather-container') != null) document.querySelector('.weather-container').style.display = 'flex'
+          }else{
+            this.err = '※日本語を入力してください。'
+          }
         }
       },
       setResults (results) {
@@ -76,3 +87,13 @@
     }
   }
 </script>
+
+<style scoped>
+  #jp, .search-bar{
+    font-family: var(--zen-font) !important;
+  }
+
+  .search-error{
+    
+  }
+</style>

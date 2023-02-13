@@ -16,10 +16,12 @@
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;500;700;900&display=swap');
 
   :root{
     --text-color: #161823;
     --font-family: 'Comfortaa', cursive;
+    --zen-font: 'Zen Maru Gothic', sans-serif;
     --transition: all .1s ease-in;
   }
 
@@ -77,6 +79,14 @@
     padding: 10px;
   }
 
+  .search-box{
+    text-align: center;
+  }
+
+  .search-error{
+    color: #fd5a7a;
+  }
+
   .search-bar {
     display: block;
     width: 450px;
@@ -91,7 +101,7 @@
     background: none;
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
     background-color: rgba(255, 255, 255, .5);
-    border-radius: 100rem 100rem 100rem 100rem;
+    border-radius: 10px;
     transition: 0.4s;
     font-family: var(--font-family);
   }

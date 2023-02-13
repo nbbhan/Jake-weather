@@ -5,6 +5,8 @@
         <div class="search-welcome">Local forecast by "City, St" or ZIP code</div>
         
         <div class="search-box">
+          <div class="search-error">{{ err }}</div>
+
           <input 
             type="text" 
             class="search-bar" 
@@ -49,18 +51,26 @@
         url_base: 'https://api.openweathermap.org/data/2.5/weather?',
         query: '',
         weather: {},
-        abc: ''
+        err: ''
       }
     },
     methods: {
       fetchWeather (e) {
         if (e.key == "Enter") {
-          fetch(`${this.url_base}q=${this.query}&appid=${this.api_key}`)
+
+          // Using regex for validation
+          if (/^[a-zA-Z]+$/.test(this.query)){
+            fetch(`${this.url_base}q=${this.query}&appid=${this.api_key}`)
             .then(res => {
               return res.json();
             }).then(this.setResults);
 
-          if(document.querySelector('.weather-container') != null) document.querySelector('.weather-container').style.display = 'flex'
+            if(this.err != '') this.err = ''
+
+            if(document.querySelector('.weather-container') != null) document.querySelector('.weather-container').style.display = 'flex'
+          }else{
+            this.err = 'Please enter english only!'
+          }
         }
       },
       setResults (results) {
