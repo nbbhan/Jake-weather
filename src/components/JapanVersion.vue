@@ -54,7 +54,8 @@
         if (e.key == "Enter") {
 
           // Using regex for validation
-          if (/[一-龠]+|[ぁ-ゔ]+|[ァ-ヴー]+|[ａ-ｚＡ-Ｚ０-９]+|[々〆〤ヶ]+/u.test(this.query)){
+          // eslint-disable-next-line
+          if (/[一-龠]+|[ぁ-ゔ]+|[ァ-ヴー]+|[ａ-ｚＡ-Ｚ０-９]+|[々〆〤ヶ]+/u.test(this.query) || /^[0-9!@#\$%\^\&*\)\(+=._-]+$/g.test(this.query)){
             fetch(`${this.url_base}q=${this.query}&appid=${this.api_key}`)
             .then(res => {
               return res.json();

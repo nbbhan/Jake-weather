@@ -59,7 +59,7 @@
         if (e.key == "Enter") {
 
           // Using regex for validation
-          if (/^[a-zA-Z]+$/.test(this.query)){
+          if (/^[a-zA-Z0-9]+$/.test(this.query)){
             fetch(`${this.url_base}q=${this.query}&appid=${this.api_key}`)
             .then(res => {
               return res.json();
