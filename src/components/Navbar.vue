@@ -28,7 +28,7 @@
       <router-link to="/about">
         <div class="navbar-btn">
           <div class="navbar-btn-text">
-            About me
+            About
             <div class="underline"></div>
           </div>
         </div>

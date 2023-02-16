@@ -51,30 +51,33 @@
         url_base: 'https://api.openweathermap.org/data/2.5/weather?',
         query: '',
         weather: {},
-        err: ''
+        err: '',
       }
     },
     methods: {
       fetchWeather (e) {
         if (e.key == "Enter") {
-
           // Using regex for validation
           if (/^[a-zA-Z0-9]+$/.test(this.query)){
             fetch(`${this.url_base}q=${this.query}&appid=${this.api_key}`)
             .then(res => {
               return res.json();
             }).then(this.setResults);
-
-            if(this.err != '') this.err = ''
-
-            if(document.querySelector('.weather-container') != null) document.querySelector('.weather-container').style.display = 'flex'
           }else{
             this.err = 'Please enter english only!'
           }
         }
       },
       setResults (results) {
-        this.weather = results;
+        if(results.cod != 200){
+          this.err = `Please check again, ${results.message}!`
+        }else{
+          this.weather = results;
+
+          if(document.querySelector('.weather-container') != null) document.querySelector('.weather-container').style.display = 'flex'
+
+          if(this.err != '') this.err = ''
+        }
       },
       dateBuilder () {
         let d = new Date();

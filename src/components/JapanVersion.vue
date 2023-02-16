@@ -57,20 +57,24 @@
           // eslint-disable-next-line
           if (/[一-龠]+|[ぁ-ゔ]+|[ァ-ヴー]+|[ａ-ｚＡ-Ｚ０-９]+|[々〆〤ヶ]+/u.test(this.query) || /^[0-9!@#\$%\^\&*\)\(+=._-]+$/g.test(this.query)){
             fetch(`${this.url_base}q=${this.query}&appid=${this.api_key}`)
-            .then(res => {
-              return res.json();
-            }).then(this.setResults);
-
-            if(this.err != '') this.err = ''
-
-            if(document.querySelector('.weather-container') != null) document.querySelector('.weather-container').style.display = 'flex'
+              .then(res => {
+                return res.json();
+              }).then(this.setResults)
           }else{
             this.err = '※日本語を入力してください。'
           }
         }
       },
       setResults (results) {
-        this.weather = results;
+        if(results.cod != 200){
+          this.err = `※見つかりません。もう一度確認してください。`
+        }else{
+          this.weather = results;
+
+          if(document.querySelector('.weather-container') != null) document.querySelector('.weather-container').style.display = 'flex'
+
+          if(this.err != '') this.err = ''
+        }
       },
       dateBuilder () {
         let d = new Date();
